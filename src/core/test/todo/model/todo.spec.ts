@@ -67,23 +67,27 @@ describe('Todo Domain Model', () => {
   });
 
   describe('update', () => {
-    it('should update todo with valid properties', () => {
+    it('should update todo name on success', () => {
       const todo = Todo.create(props);
+      const { name } = TodoDataBuilder.anTodo().withName('New Todo').build();
 
-      const newAssignorProps = TodoDataBuilder.anTodo()
-        .withName('New Todo')
-        .withStatus(true)
-        .build();
+      todo.updateName(name);
 
-      todo.update(newAssignorProps);
+      expect(todo.name).toBe(name);
+    });
 
-      expect(todo.name).toBe(newAssignorProps.name);
-      expect(todo.status).toBe(newAssignorProps.status);
+    it('should update todo status on success', () => {
+      const todo = Todo.create(props);
+      const { status } = TodoDataBuilder.anTodo().withStatus(true).build();
+
+      todo.updateStatus(status);
+
+      expect(todo.status).toBe(status);
     });
   });
 
   describe('create', () => {
-    it('should create a new Todo on success', () => {
+    it('should create a new todo on success', () => {
       const todo = Todo.create(props);
 
       expect(todo.id).toBeDefined();
