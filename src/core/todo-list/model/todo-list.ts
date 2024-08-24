@@ -1,5 +1,5 @@
 import { Entity } from '@core/shared/model';
-import { Name } from '@core/shared/value-objects';
+import { Name, Color } from '@core/shared/value-objects';
 import { Notification } from '@core/shared/notification';
 
 export type TodoListProps = {
@@ -10,14 +10,14 @@ export type TodoListProps = {
 
 export class TodoList extends Entity<TodoListProps> {
   private _name: Name;
-  private _color: string;
+  private _color: Color;
 
   constructor(props: TodoListProps) {
     const notification = new Notification();
     super(props, notification);
 
-    this._color = props.color;
     this._name = new Name(props.name, this._notification);
+    this._color = new Color(props.color, this._notification);
   }
 
   static create(props: TodoListProps): TodoList {
@@ -25,8 +25,8 @@ export class TodoList extends Entity<TodoListProps> {
   }
 
   public update(props: Partial<TodoListProps>): void {
-    this._color = props.color;
     this._name = new Name(props.name, this._notification);
+    this._color = new Color(props.color, this._notification);
   }
 
   get color() {
