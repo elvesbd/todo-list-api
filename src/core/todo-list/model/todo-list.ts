@@ -24,11 +24,23 @@ export class TodoList extends Entity<TodoListProps> {
     this._color = new Color(props.color, this._notification);
   }
 
+  get id() {
+    return this._id.value;
+  }
+
   get color() {
-    return this._color;
+    return this._color.value;
   }
 
   get name() {
     return this._name.value;
+  }
+
+  get notifications() {
+    return this.getNotifications();
+  }
+
+  get containNotifications() {
+    return this.hasNotifications();
   }
 }
