@@ -9,7 +9,7 @@ export class TodoListDataBuilder {
     name: 'John Doe',
   };
 
-  public static aTodoList(): TodoListDataBuilder {
+  public static anTodoList(): TodoListDataBuilder {
     return new TodoListDataBuilder();
   }
 
