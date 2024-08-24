@@ -1,12 +1,7 @@
+import { TodoListProps } from './types';
 import { Entity } from '@core/shared/model';
 import { Name, Color } from '@core/shared/value-objects';
 import { Notification } from '@core/shared/notification';
-
-export type TodoListProps = {
-  id?: string;
-  name: string;
-  color: string;
-};
 
 export class TodoList extends Entity<TodoListProps> {
   private _name: Name;
