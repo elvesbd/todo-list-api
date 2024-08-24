@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: todo-list-api
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - .:/usr/src/app
+    command: ['node', 'dist/main']
+
+  # Exemplo de serviço adicional (por exemplo, um banco de dados)
+  # db:
+  #   image: postgres:13
+  #   container_name: postgres-db
+  #   environment:
+  #     POSTGRES_USER: user
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_DB: db
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+# Volumes
+# volumes:
+#   pgdata:
