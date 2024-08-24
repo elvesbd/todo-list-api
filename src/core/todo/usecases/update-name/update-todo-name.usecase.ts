@@ -4,7 +4,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 
 type UpdateTodoNameInput = {
   todoId: string;
-  status: boolean;
+  name: string;
 };
 
 @Injectable()
@@ -14,7 +14,7 @@ export class UpdateTodoNameUseCase
   constructor(private readonly todoRepository: TodoRepository) {}
 
   async execute(input: UpdateTodoNameInput): Promise<void> {
-    const { todoId, status } = input;
+    const { todoId, name } = input;
 
     const todo = await this.todoRepository.getById(todoId);
 
@@ -22,7 +22,7 @@ export class UpdateTodoNameUseCase
       throw new NotFoundException('Todo not found');
     }
 
-    todo.updateStatus(status);
+    todo.updateName(name);
     await this.todoRepository.save(todo);
   }
 }
