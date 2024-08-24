@@ -3,7 +3,7 @@ import { Entity } from '@core/shared/model';
 import { Name } from '@core/shared/value-objects';
 import { Notification } from '@core/shared/notification';
 
-export class TodoList extends Entity<TodoProps> {
+export class Todo extends Entity<TodoProps> {
   private _name: Name;
   private _status: boolean;
 
@@ -15,8 +15,8 @@ export class TodoList extends Entity<TodoProps> {
     this._name = new Name(props.name, this._notification);
   }
 
-  static create(props: TodoProps): TodoList {
-    return new TodoList(props);
+  static create(props: TodoProps): Todo {
+    return new Todo(props);
   }
 
   public update(props: Partial<TodoProps>): void {
