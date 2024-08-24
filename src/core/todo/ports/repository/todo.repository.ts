@@ -5,5 +5,5 @@ export abstract class TodoRepository {
   abstract remove(id: string): Promise<void>;
   abstract getById(id: string): Promise<Todo>;
   abstract updateName(id: string, name: string): Promise<Todo | null>;
-  abstract updateStatus(id: string, status: string): Promise<Todo | null>;
+  abstract updateStatus(id: string, status: boolean): Promise<Todo | null>;
 }

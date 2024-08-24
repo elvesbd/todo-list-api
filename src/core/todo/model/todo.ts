@@ -19,9 +19,12 @@ export class Todo extends Entity<TodoProps> {
     return new Todo(props);
   }
 
-  public update(props: Partial<TodoProps>): void {
-    this._status = props.status;
-    this._name = new Name(props.name, this._notification);
+  public updateStatus(status: boolean): void {
+    this._status = status;
+  }
+
+  public updateName(name: string): void {
+    this._name = new Name(name, this._notification);
   }
 
   get id() {
