@@ -9,14 +9,20 @@ export class Color {
     this._context = 'cor';
     this.validate(notification);
   }
-
   private validate(notification: Notification) {
     const hexColorRegex = /^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})$/;
 
-    if (this._value === null || this._value === undefined) {
-      notification.addNotification({
-        context: this._context,
-        message: 'não pode ser nulo',
+    const commonMessages = [
+      'não pode ser nulo',
+      'deve estar no formato hexadecimal (#RRGGBB ou #RGB)',
+    ];
+
+    if (this._value === null) {
+      commonMessages.forEach((message) => {
+        notification.addNotification({
+          context: this._context,
+          message,
+        });
       });
       return;
     }
@@ -24,7 +30,7 @@ export class Color {
     if (!hexColorRegex.test(this._value)) {
       notification.addNotification({
         context: this._context,
-        message: 'deve estar no formato hexadecimal (#RRGGBB ou #RGB)',
+        message: commonMessages[1],
       });
     }
   }
