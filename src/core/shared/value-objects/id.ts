@@ -14,7 +14,7 @@ export class Id {
     }
   }
 
-  getValue() {
+  get value() {
     return this._value;
   }
 

@@ -24,11 +24,23 @@ export class Todo extends Entity<TodoProps> {
     this._name = new Name(props.name, this._notification);
   }
 
+  get id() {
+    return this._id.value;
+  }
+
   get status() {
     return this._status;
   }
 
   get name() {
     return this._name.value;
+  }
+
+  get notifications() {
+    return this.getNotifications();
+  }
+
+  get containNotifications() {
+    return this.hasNotifications();
   }
 }
