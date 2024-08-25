@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { Todo } from '@core/todo/model/todo';
+import { Todo } from '@core/todo/model';
 import { UseCase } from '@core/shared/interfaces';
 import { TodoRepository } from '@core/todo/ports/repository';
 

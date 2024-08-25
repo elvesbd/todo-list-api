@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { Todo } from '@core/todo/model/todo';
+import { Todo } from '@core/todo/model';
 import { SaveTodoUseCase } from '@core/todo/usecases/save';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { TodoDataBuilder } from '@core/test/__mocks__/data-builder';

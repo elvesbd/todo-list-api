@@ -1,5 +1,5 @@
+import { Todo } from '@core/todo/model';
 import { TodoDataBuilder } from '@core/test/__mocks__/data-builder';
-import { Todo } from '@core/todo/model/todo';
 
 describe('Todo Domain Model', () => {
   const props = TodoDataBuilder.anTodo().build();

@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { Todo } from '@core/todo/model/todo';
+import { Todo } from '@core/todo/model';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { TodoDataBuilder } from '@core/test/__mocks__/data-builder';
 import { UpdateTodoStatusUseCase } from '@core/todo/usecases/update-status';
