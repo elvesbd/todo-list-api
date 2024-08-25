@@ -7,10 +7,12 @@ import {
 } from '@core/todo/usecases';
 import {
   SaveTodoController,
+  RemoveTodoController,
   UpdateTodoNameController,
   UpdateTodoStatusController,
 } from '@infra/http/adapters/controllers/todo';
 import { TodoRepository } from '@core/todo/ports/repository';
+import { RemoveTodoUseCase } from '@core/todo/usecases/remove';
 
 @Module({
   imports: [],
@@ -19,6 +21,12 @@ import { TodoRepository } from '@core/todo/ports/repository';
       provide: SaveTodoUseCase,
       useFactory: (todoRepository: TodoRepository): SaveTodoUseCase =>
         new SaveTodoUseCase(todoRepository),
+      inject: [TodoRepository],
+    },
+    {
+      provide: RemoveTodoUseCase,
+      useFactory: (todoRepository: TodoRepository): RemoveTodoUseCase =>
+        new RemoveTodoUseCase(todoRepository),
       inject: [TodoRepository],
     },
     {
@@ -36,6 +44,7 @@ import { TodoRepository } from '@core/todo/ports/repository';
   ],
   controllers: [
     SaveTodoController,
+    RemoveTodoController,
     UpdateTodoNameController,
     UpdateTodoStatusController,
   ],
