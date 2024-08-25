@@ -52,7 +52,7 @@ export class UpdateTodoNameController {
     description: 'ID da tarefa a ser editada',
     type: String,
   })
-  @Put('todo/:todoId')
+  @Put('todos/:todoId')
   @HttpCode(HttpStatus.OK)
   public async updateTodoName(
     @Param('todoId') todoId: string,

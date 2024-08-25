@@ -36,7 +36,7 @@ export class SaveTodoController {
   @ApiUnprocessableEntityResponse({
     description: 'Dados de entrada inválidos.',
   })
-  @Post('task')
+  @Post('todos')
   @HttpCode(HttpStatus.CREATED)
   public async saveTodo(@Body() dto: SaveTodoDto): Promise<void> {
     const { todo } = await this.saveTodoUseCase.execute(dto);
