@@ -6,7 +6,6 @@ import { TodoRepository } from '@core/todo/ports/repository';
 
 type Input = {
   name: string;
-  status: boolean;
 };
 
 type Output = {
@@ -18,11 +17,8 @@ export class SaveTodoUseCase implements UseCase<Input, Output> {
   constructor(private readonly todoRepository: TodoRepository) {}
 
   async execute(input: Input): Promise<Output> {
-    const { name, status } = input;
-    const todo = Todo.create({
-      name,
-      status,
-    });
+    const { name } = input;
+    const todo = Todo.create({ name });
 
     if (todo.containNotifications) {
       return { todo };

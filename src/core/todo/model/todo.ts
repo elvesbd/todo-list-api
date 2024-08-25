@@ -16,7 +16,10 @@ export class Todo extends Entity<TodoProps> {
   }
 
   static create(props: TodoProps): Todo {
-    return new Todo(props);
+    return new Todo({
+      ...props,
+      status: false,
+    });
   }
 
   public updateStatus(status: boolean): void {
