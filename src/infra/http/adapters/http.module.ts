@@ -13,9 +13,10 @@ import {
 } from '@infra/http/adapters/controllers/todo';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { RemoveTodoUseCase } from '@core/todo/usecases/remove';
+import { DatabaseModule } from '@infra/database/database.module';
 
 @Module({
-  imports: [],
+  imports: [DatabaseModule],
   providers: [
     {
       provide: SaveTodoUseCase,
