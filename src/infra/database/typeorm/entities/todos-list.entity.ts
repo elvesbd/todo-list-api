@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { TypeORMTodoEntity } from './todo.entity';
 
-@Entity('todos-list')
+@Entity('todos_list')
 export class TypeORMTodosListEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;

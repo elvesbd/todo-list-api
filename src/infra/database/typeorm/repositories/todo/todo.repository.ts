@@ -2,17 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 
 import { Todo } from '@core/todo/model';
+import { dataSource } from '../../datasource';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { TypeORMTodoEntity } from '@infra/database/typeorm/entities';
 import { TypeORMTodoMapper } from '@infra/database/typeorm/mappers';
-import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class TypeORMTodoRepository implements TodoRepository {
-  constructor(
-    @InjectRepository(TypeORMTodoEntity)
-    private readonly repository: Repository<TypeORMTodoEntity>,
-  ) {}
+  private repository: Repository<TypeORMTodoEntity>;
+
+  constructor() {
+    this.repository = dataSource.getRepository(TypeORMTodoEntity);
+  }
 
   public async save(todo: Todo): Promise<void> {
     await this.repository.save(todo);
