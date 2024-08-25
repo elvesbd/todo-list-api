@@ -1,3 +1,4 @@
+import { InfraModule } from '@infra/infra.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
@@ -10,7 +11,7 @@ import * as Joi from 'joi';
         PORT: Joi.number().required(),
       }),
     }),
-    //InfraModule,
+    InfraModule,
   ],
   providers: [],
 })
