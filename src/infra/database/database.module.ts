@@ -1,11 +1,18 @@
 import { Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import {
+  TypeORMTodoEntity,
+  TypeORMTodosListEntity,
+} from '@infra/database/typeorm/entities';
+import {
+  TypeORMTodoRepository,
+  TypeORMTodosListRepository,
+} from '@infra/database/typeorm/repositories';
 import { DatabaseService } from './database.service';
 import { TodoRepository } from '@core/todo/ports/repository';
-import { TypeORMTodoRepository } from './typeorm/repositories';
-import { ConfigService } from '@nestjs/config';
-import { TypeORMTodoEntity } from './typeorm/entities';
+import { TodosListRepository } from '@core/todos-list/ports/repository';
 
 @Module({
   imports: [
@@ -13,14 +20,18 @@ import { TypeORMTodoEntity } from './typeorm/entities';
       useClass: DatabaseService,
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([TypeORMTodoEntity]),
+    TypeOrmModule.forFeature([TypeORMTodoEntity, TypeORMTodosListEntity]),
   ],
   providers: [
     {
       provide: TodoRepository,
       useClass: TypeORMTodoRepository,
     },
+    {
+      provide: TodosListRepository,
+      useClass: TypeORMTodosListRepository,
+    },
   ],
-  exports: [TodoRepository],
+  exports: [TodoRepository, TodosListRepository],
 })
 export class DatabaseModule {}

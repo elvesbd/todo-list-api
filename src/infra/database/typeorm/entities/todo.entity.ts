@@ -26,7 +26,7 @@ export class TypeORMTodoEntity {
   status: boolean;
 
   @ManyToOne(() => TypeORMTodosListEntity, (todosList) => todosList.todos)
-  todosList: TypeORMTodosListEntity[];
+  todosList?: TypeORMTodosListEntity[];
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt?: Date;
