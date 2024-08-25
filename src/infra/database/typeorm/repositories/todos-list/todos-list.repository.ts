@@ -1,46 +1,54 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
 
 import { TodosList } from '@core/todos-list/model';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
 import { TypeORMTodosListMapper } from '@infra/database/typeorm/mappers';
-import { TypeORMTodosListEntity } from '@infra/database/typeorm/entities';
-import { dataSource } from '../../datasource';
+import { DataSource } from 'typeorm';
 
 @Injectable()
 export class TypeORMTodosListRepository implements TodosListRepository {
-  private repository: Repository<TypeORMTodosListEntity>;
-
-  constructor() {
-    this.repository = dataSource.getRepository(TypeORMTodosListEntity);
-  }
+  constructor(private readonly dataSource: DataSource) {}
 
   public async save(todosList: TodosList): Promise<void> {
     const newTodosList = TypeORMTodosListMapper.toPersistence(todosList);
-    await this.repository.save(newTodosList);
+
+    await this.dataSource.query(
+      `INSERT INTO todos_list (id, name, color, "createdAt", "updatedAt")
+       VALUES ($1, $2, $3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
+      [newTodosList.id, newTodosList.name, newTodosList.color],
+    );
   }
 
   public async remove(id: string): Promise<void> {
-    const todosList = await this.repository.findOne({
-      where: { id },
-    });
+    await this.dataSource.query(
+      `UPDATE todos SET "deletedAt" = CURRENT_TIMESTAMP WHERE "todosListId" = $1`,
+      [id],
+    );
 
-    await this.repository.softRemove(todosList);
+    await this.dataSource.query(
+      `UPDATE todos_list SET "deletedAt" = CURRENT_TIMESTAMP WHERE id = $1`,
+      [id],
+    );
   }
 
   public async getAll(): Promise<TodosList[] | []> {
-    const todosList = await this.repository.find();
+    const result = await this.dataSource.query(
+      `SELECT * FROM todos_list WHERE "deletedAt" IS NULL`,
+    );
 
-    return TypeORMTodosListMapper.toDomainList(todosList);
+    return TypeORMTodosListMapper.toDomainList(result);
   }
 
   public async getById(id: string): Promise<TodosList | null> {
-    const todosList = await this.repository.findOne({
-      where: { id },
-    });
+    console.log({ id });
 
-    if (!todosList) return null;
+    const result = await this.dataSource.query(
+      `SELECT * FROM todos_list WHERE id = $1 AND "deletedAt" IS NULL`,
+      [id],
+    );
 
-    return TypeORMTodosListMapper.toDomain(todosList);
+    if (result.length === 0) return null;
+
+    return TypeORMTodosListMapper.toDomain(result[0]);
   }
 }

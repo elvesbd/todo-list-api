@@ -7,11 +7,7 @@ import { TypeORMTodoMapper } from '@infra/database/typeorm/mappers';
 
 @Injectable()
 export class TypeORMTodoRepository implements TodoRepository {
-  private dataSource: DataSource;
-
-  constructor(dataSource: DataSource) {
-    this.dataSource = dataSource;
-  }
+  constructor(private readonly dataSource: DataSource) {}
 
   public async save(todosListId: string, todo: Todo): Promise<void> {
     const todoEntity = TypeORMTodoMapper.toPersistence(todo);
