@@ -1,19 +1,22 @@
 import { UseCase } from '@core/shared/interfaces';
+import { Todo } from '@core/todo/model';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { Injectable, NotFoundException } from '@nestjs/common';
 
-type UpdateTodoNameInput = {
+type Input = {
   todoId: string;
   name: string;
 };
 
+type Output = {
+  todo: Todo;
+};
+
 @Injectable()
-export class UpdateTodoNameUseCase
-  implements UseCase<UpdateTodoNameInput, void>
-{
+export class UpdateTodoNameUseCase implements UseCase<Input, Output> {
   constructor(private readonly todoRepository: TodoRepository) {}
 
-  async execute(input: UpdateTodoNameInput): Promise<void> {
+  async execute(input: Input): Promise<Output> {
     const { todoId, name } = input;
 
     const todo = await this.todoRepository.getById(todoId);
@@ -23,6 +26,11 @@ export class UpdateTodoNameUseCase
     }
 
     todo.updateName(name);
+    if (todo.containNotifications) {
+      return { todo };
+    }
+
     await this.todoRepository.save(todo);
+    return { todo };
   }
 }
