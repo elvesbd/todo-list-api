@@ -54,6 +54,10 @@ export class TodoViewModel implements BaseViewModel {
     };
   }
 
+  public static toHTTPList(todos: Todo[]): TodoVMResponse[] {
+    return todos.map(this.toHTTP);
+  }
+
   public static toHTTPForUpdate(todo: Todo): void {
     if (todo.containNotifications) {
       throw new UnprocessableEntityException({

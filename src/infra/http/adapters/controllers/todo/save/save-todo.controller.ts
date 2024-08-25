@@ -9,7 +9,7 @@ import {
 } from '@nestjs/swagger';
 
 import { ApiPath, ApiTodoTag } from '../../constants';
-import { SaveTodoUseCase } from '@core/todo/usecases/save';
+import { SaveTodoUseCase } from '@core/todo/usecases';
 import { TodoViewModel } from '@infra/http/adapters/view-model';
 import { SaveTodoDto } from '@infra/http/adapters/controllers/todo/dtos';
 

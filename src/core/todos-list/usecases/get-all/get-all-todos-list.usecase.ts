@@ -11,12 +11,6 @@ export class GetAllTodosListUseCase
   constructor(private readonly todosListRepository: TodosListRepository) {}
 
   async execute(): Promise<TodosList[] | []> {
-    const todosList = await this.todosListRepository.getAll();
-
-    if (!todosList) {
-      return [];
-    }
-
-    return todosList;
+    return await this.todosListRepository.getAll();
   }
 }

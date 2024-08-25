@@ -30,7 +30,7 @@ export class UpdateTodoNameUseCase implements UseCase<Input, Output> {
       return { todo };
     }
 
-    await this.todoRepository.save(todo);
+    await this.todoRepository.update(todo);
     return { todo };
   }
 }

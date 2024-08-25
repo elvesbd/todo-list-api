@@ -16,7 +16,7 @@ import {
 } from '@nestjs/swagger';
 
 import { ApiPath, ApiTodoTag } from '../../constants';
-import { UpdateTodoStatusUseCase } from '@core/todo/usecases/update-status';
+import { UpdateTodoStatusUseCase } from '@core/todo/usecases';
 import { UpdateStatusDto } from '@infra/http/adapters/controllers/todo/dtos';
 
 @ApiBearerAuth()
@@ -45,7 +45,7 @@ export class UpdateTodoStatusController {
     description: 'ID da tarefa a ser editada',
     type: String,
   })
-  @Put('todos/:id')
+  @Put('todos/update-status/:id')
   @HttpCode(HttpStatus.OK)
   public async updateTodoStatus(
     @Param('id') id: string,

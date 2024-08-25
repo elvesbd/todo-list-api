@@ -5,9 +5,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   PrimaryGeneratedColumn,
-  ManyToOne,
 } from 'typeorm';
-import { TypeORMTodosListEntity } from './todos-list.entity';
 
 @Entity('todos')
 export class TypeORMTodoEntity {
@@ -25,8 +23,10 @@ export class TypeORMTodoEntity {
   })
   status: boolean;
 
-  @ManyToOne(() => TypeORMTodosListEntity, (todosList) => todosList.todos)
-  todosList?: TypeORMTodosListEntity[];
+  @Column('uuid', {
+    nullable: false,
+  })
+  todosListId?: string;
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt?: Date;

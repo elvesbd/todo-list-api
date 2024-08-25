@@ -21,7 +21,7 @@ import {
   TodoViewModel,
   TodoVMResponse,
 } from '@infra/http/adapters/view-model/todo';
-import { UpdateTodoNameUseCase } from '@core/todo/usecases/update-name';
+import { UpdateTodoNameUseCase } from '@core/todo/usecases';
 import { UpdateNameDto } from '@infra/http/adapters/controllers/todo/dtos';
 
 @ApiBearerAuth()
@@ -52,7 +52,7 @@ export class UpdateTodoNameController {
     description: 'ID da tarefa a ser editada',
     type: String,
   })
-  @Put('todos/:id')
+  @Put('todos/update-name/:id')
   @HttpCode(HttpStatus.OK)
   public async updateTodoName(
     @Param('id') id: string,

@@ -12,6 +12,10 @@ export class TypeORMTodoMapper {
     return new Todo(persistence);
   }
 
+  public static toDomainList(persistence: TypeORMTodoEntity[]): Todo[] {
+    return persistence.map((todo) => new Todo(todo));
+  }
+
   public static toPersistence(domain: Todo): TypeORMTodoEntity {
     return {
       id: domain.id,

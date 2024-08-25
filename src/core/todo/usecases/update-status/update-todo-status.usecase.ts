@@ -23,6 +23,6 @@ export class UpdateTodoStatusUseCase
     }
 
     todo.updateStatus(status);
-    await this.todoRepository.save(todo);
+    await this.todoRepository.update(todo);
   }
 }
