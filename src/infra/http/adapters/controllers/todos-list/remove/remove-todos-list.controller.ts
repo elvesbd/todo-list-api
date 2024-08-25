@@ -9,14 +9,12 @@ import {
   ApiTags,
   ApiParam,
   ApiOperation,
-  ApiBearerAuth,
   ApiNoContentResponse,
 } from '@nestjs/swagger';
 
 import { ApiPath, ApiTodosListTag } from '../../constants';
 import { RemoveTodosListUseCase } from '@core/todos-list/usecases/remove';
 
-@ApiBearerAuth()
 @ApiTags(ApiTodosListTag)
 @Controller(ApiPath)
 export class RemoveTodosListController {

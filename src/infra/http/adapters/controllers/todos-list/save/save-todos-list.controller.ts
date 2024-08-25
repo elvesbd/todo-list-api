@@ -3,7 +3,6 @@ import {
   ApiTags,
   ApiBody,
   ApiOperation,
-  ApiBearerAuth,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
 
@@ -12,7 +11,6 @@ import { SaveTodosListUseCase } from '@core/todos-list/usecases/save';
 import { TodosListViewModel } from '@infra/http/adapters/view-model/todosList';
 import { SaveTodosListDto } from '@infra/http/adapters/controllers/todos-list/dtos';
 
-@ApiBearerAuth()
 @ApiTags(ApiTodosListTag)
 @Controller(ApiPath)
 export class SaveTodosListController {
@@ -33,8 +31,6 @@ export class SaveTodosListController {
   @Post('todos-list')
   @HttpCode(HttpStatus.CREATED)
   public async saveTodosList(@Body() dto: SaveTodosListDto): Promise<void> {
-    console.log(dto);
-
     const { todosList } = await this.saveTodosListUseCase.execute(dto);
 
     return TodosListViewModel.toHTTPForUpdate(todosList);

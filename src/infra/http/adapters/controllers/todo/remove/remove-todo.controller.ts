@@ -16,7 +16,6 @@ import {
 import { ApiPath, ApiTodoTag } from '../../constants';
 import { RemoveTodoUseCase } from '@core/todo/usecases';
 
-@ApiBearerAuth()
 @ApiTags(ApiTodoTag)
 @Controller(ApiPath)
 export class RemoveTodoController {

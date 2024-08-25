@@ -11,7 +11,6 @@ import {
   ApiBody,
   ApiParam,
   ApiOperation,
-  ApiBearerAuth,
   ApiOkResponse,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
@@ -24,7 +23,6 @@ import {
 import { UpdateTodoNameUseCase } from '@core/todo/usecases';
 import { UpdateNameDto } from '@infra/http/adapters/controllers/todo/dtos';
 
-@ApiBearerAuth()
 @ApiTags(ApiTodoTag)
 @Controller(ApiPath)
 export class UpdateTodoNameController {
