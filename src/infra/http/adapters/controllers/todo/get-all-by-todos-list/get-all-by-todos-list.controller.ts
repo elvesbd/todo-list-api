@@ -15,20 +15,22 @@ export class GetTodosByTodosListController {
     private readonly getTodosByTodosListUseCase: GetTodosByTodosListUseCase,
   ) {}
 
-  @ApiOperation({ summary: 'Get all todos for a specific todos list' })
-  @ApiParam({ name: 'todosListId', description: 'ID of the todos list' })
+  @ApiOperation({
+    summary: 'Obter todas as tarefas para uma lista de tarefas específica',
+  })
+  @ApiParam({ name: 'todosListId', description: 'ID da lista de tarefas' })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: 'Todos successfully retrieved',
+    description: 'Tarefas recuperadas com sucesso',
     type: TodoVMResponse,
     isArray: true,
   })
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
-    description: 'Todos list not found',
+    description: 'Lista de tarefas não encontrada',
   })
   @HttpCode(HttpStatus.OK)
-  @Get('todos/todos-list/:todosListId')
+  @Get('todos/todosListId/:todosListId')
   public async getTodosByTodosList(
     @Param('todosListId') todosListId: string,
   ): Promise<TodoVMResponse[] | void> {

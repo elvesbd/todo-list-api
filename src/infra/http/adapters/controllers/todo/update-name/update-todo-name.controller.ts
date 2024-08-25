@@ -29,7 +29,7 @@ export class UpdateTodoNameController {
   constructor(private readonly updateTodoNameUseCase: UpdateTodoNameUseCase) {}
 
   @ApiOperation({
-    summary: 'Editar Tarefa',
+    summary: 'Editar Nome da Tarefa',
     description: 'Atualiza o nome de um tarefa existente.',
   })
   @ApiBody({
@@ -50,7 +50,7 @@ export class UpdateTodoNameController {
     description: 'ID da tarefa a ser editada',
     type: String,
   })
-  @Put('todos/update-name/:id')
+  @Put('todos/:id/update-name')
   @HttpCode(HttpStatus.OK)
   public async updateTodoName(
     @Param('id') id: string,

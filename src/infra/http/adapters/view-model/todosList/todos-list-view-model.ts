@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { UnprocessableEntityException } from '@nestjs/common';
 
 import { TodosList } from '@core/todos-list/model';
@@ -25,7 +25,7 @@ export class TodosListVMResponse {
   })
   color: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'Notificações relacionadas à tarefa.',
     type: 'object',
     additionalProperties: {
