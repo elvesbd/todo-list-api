@@ -19,18 +19,18 @@ export class TypeORMTodoRepository implements TodoRepository {
     await this.repository.save(todo);
   }
 
-  public async remove(todoId: string): Promise<void> {
+  public async remove(id: string): Promise<void> {
     const todo = await this.repository.findOne({
-      where: { id: todoId },
+      where: { id: id },
     });
 
     await this.repository.softRemove(todo);
   }
 
-  public async getById(todoId: string): Promise<Todo | null> {
+  public async getById(id: string): Promise<Todo | null> {
     const todo = await this.repository.findOne({
       where: {
-        id: todoId,
+        id: id,
       },
     });
 

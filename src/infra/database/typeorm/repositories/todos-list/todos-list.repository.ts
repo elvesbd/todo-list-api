@@ -34,10 +34,10 @@ export class TypeORMTodosListRepository implements TodosListRepository {
     return TypeORMTodosListMapper.toDomainList(todosList);
   }
 
-  public async getById(todoId: string): Promise<TodosList | null> {
+  public async getById(id: string): Promise<TodosList | null> {
     const todosList = await this.repository.findOne({
       where: {
-        id: todoId,
+        id: id,
       },
     });
 

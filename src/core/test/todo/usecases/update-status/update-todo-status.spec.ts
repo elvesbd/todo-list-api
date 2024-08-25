@@ -10,7 +10,7 @@ describe('UpdateTodoStatusUseCase', () => {
   let sut: UpdateTodoStatusUseCase;
   let todoRepository: TodoRepository;
 
-  const todoId = '65b1c7d4-0f3a-4386-b0ef-32202f36b26b';
+  const id = '65b1c7d4-0f3a-4386-b0ef-32202f36b26b';
   const input = TodoDataBuilder.anTodo().build();
   const todo = Todo.create(input);
 
@@ -34,22 +34,22 @@ describe('UpdateTodoStatusUseCase', () => {
   });
 
   it('should call repository with correct values', async () => {
-    await sut.execute({ todoId, ...input });
+    await sut.execute({ id, ...input });
 
     expect(todoRepository.getById).toHaveBeenCalledTimes(1);
-    expect(todoRepository.getById).toHaveBeenCalledWith(todoId);
+    expect(todoRepository.getById).toHaveBeenCalledWith(id);
   });
 
   it('should return an exception if todo not found', async () => {
     jest.spyOn(todoRepository, 'getById').mockResolvedValueOnce(null);
 
-    await expect(sut.execute({ todoId, ...input })).rejects.toThrow(
+    await expect(sut.execute({ id, ...input })).rejects.toThrow(
       NotFoundException,
     );
   });
 
   it('should call the repository save method on success', async () => {
-    await sut.execute({ todoId, ...input });
+    await sut.execute({ id, ...input });
 
     expect(todoRepository.save).toHaveBeenCalled();
     expect(todoRepository.save).toHaveBeenCalledWith(expect.any(Todo));

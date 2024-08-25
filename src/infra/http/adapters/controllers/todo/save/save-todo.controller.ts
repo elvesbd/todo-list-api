@@ -29,10 +29,6 @@ export class SaveTodoController {
     type: SaveTodoDto,
     required: true,
   })
-  @ApiCreatedResponse({
-    description: 'A tarefa foi criada com sucesso.',
-    type: TodoViewModel,
-  })
   @ApiUnprocessableEntityResponse({
     description: 'Dados de entrada inválidos.',
   })

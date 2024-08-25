@@ -41,18 +41,18 @@ export class UpdateTodoStatusController {
       'Dados de entrada inválidos. Retorna notificações se houver erros.',
   })
   @ApiParam({
-    name: 'todoId',
+    name: 'id',
     description: 'ID da tarefa a ser editada',
     type: String,
   })
-  @Put('todos/:todoId')
+  @Put('todos/:id')
   @HttpCode(HttpStatus.OK)
   public async updateTodoStatus(
-    @Param('todoId') todoId: string,
+    @Param('id') id: string,
     @Body() dto: UpdateStatusDto,
   ): Promise<void> {
     await this.updateTodoStatusUseCase.execute({
-      todoId,
+      id,
       ...dto,
     });
   }

@@ -4,7 +4,7 @@ import { TodoRepository } from '@core/todo/ports/repository';
 import { Injectable, NotFoundException } from '@nestjs/common';
 
 type Input = {
-  todoId: string;
+  id: string;
   name: string;
 };
 
@@ -17,9 +17,9 @@ export class UpdateTodoNameUseCase implements UseCase<Input, Output> {
   constructor(private readonly todoRepository: TodoRepository) {}
 
   async execute(input: Input): Promise<Output> {
-    const { todoId, name } = input;
+    const { id, name } = input;
 
-    const todo = await this.todoRepository.getById(todoId);
+    const todo = await this.todoRepository.getById(id);
 
     if (!todo) {
       throw new NotFoundException('Todo not found');
