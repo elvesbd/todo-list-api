@@ -1,16 +1,16 @@
 import {
   Entity,
   Column,
+  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
   PrimaryGeneratedColumn,
-  ManyToOne,
 } from 'typeorm';
-import { TypeORMTodosListEntity } from './todos-list.entity';
+import { TypeORMTodoEntity } from './todo.entity';
 
-@Entity('todos')
-export class TypeORMTodoEntity {
+@Entity('todos-list')
+export class TypeORMTodosListEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -20,13 +20,13 @@ export class TypeORMTodoEntity {
   })
   name: string;
 
-  @Column('boolean', {
+  @Column('varchar', {
     nullable: false,
   })
-  status: boolean;
+  color: string;
 
-  @ManyToOne(() => TypeORMTodosListEntity, (todosList) => todosList.todos)
-  todosList: TypeORMTodosListEntity[];
+  @OneToMany(() => TypeORMTodoEntity, (todo) => todo.todosList)
+  todos: TypeORMTodoEntity[];
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt?: Date;
