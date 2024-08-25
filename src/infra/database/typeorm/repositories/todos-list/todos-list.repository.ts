@@ -1,18 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { TodosList } from '@core/todos-list/model';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
 import { TypeORMTodosListMapper } from '@infra/database/typeorm/mappers';
 import { TypeORMTodosListEntity } from '@infra/database/typeorm/entities';
+import { dataSource } from '../../datasource';
 
 @Injectable()
 export class TypeORMTodosListRepository implements TodosListRepository {
-  constructor(
-    @InjectRepository(TypeORMTodosListEntity)
-    private readonly repository: Repository<TypeORMTodosListEntity>,
-  ) {}
+  private repository: Repository<TypeORMTodosListEntity>;
+
+  constructor() {
+    this.repository = dataSource.getRepository(TypeORMTodosListEntity);
+  }
 
   public async save(todosList: TodosList): Promise<void> {
     const newTodosList = TypeORMTodosListMapper.toPersistence(todosList);
