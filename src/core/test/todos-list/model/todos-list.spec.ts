@@ -1,4 +1,4 @@
-import { TodoList } from '@core/todo-list/model/todo-list';
+import { TodosList } from '@core/todos-list/model';
 import { TodoListDataBuilder } from '@core/test/__mocks__/data-builder';
 
 describe('Todo List Domain Model', () => {
@@ -8,7 +8,7 @@ describe('Todo List Domain Model', () => {
     it('should add notification if name is null', () => {
       const props = TodoListDataBuilder.anTodoList().withName(null).build();
 
-      const assignor = TodoList.create(props);
+      const assignor = TodosList.create(props);
 
       expect(assignor.containNotifications).toBe(true);
       expect(assignor.notifications).toEqual({
@@ -23,7 +23,7 @@ describe('Todo List Domain Model', () => {
     it('should add notification if name is empty', () => {
       const props = TodoListDataBuilder.anTodoList().withName('').build();
 
-      const todo = TodoList.create(props);
+      const todo = TodosList.create(props);
 
       expect(todo.containNotifications).toBe(true);
       expect(todo.notifications).toEqual({
@@ -35,7 +35,7 @@ describe('Todo List Domain Model', () => {
       const bigName = 'A'.repeat(141);
       const props = TodoListDataBuilder.anTodoList().withName(bigName).build();
 
-      const assignor = TodoList.create(props);
+      const assignor = TodosList.create(props);
 
       expect(assignor.containNotifications).toBe(true);
       expect(assignor.notifications).toEqual({
@@ -46,7 +46,7 @@ describe('Todo List Domain Model', () => {
     it('should add notification if color is null', () => {
       const props = TodoListDataBuilder.anTodoList().withColor(null).build();
 
-      const todoList = TodoList.create(props);
+      const todoList = TodosList.create(props);
 
       expect(todoList.containNotifications).toBe(true);
       expect(todoList.notifications).toEqual({
@@ -60,7 +60,7 @@ describe('Todo List Domain Model', () => {
     it('should add notification if color is empty', () => {
       const props = TodoListDataBuilder.anTodoList().withColor('').build();
 
-      const todoList = TodoList.create(props);
+      const todoList = TodosList.create(props);
 
       expect(todoList.containNotifications).toBe(true);
       expect(todoList.notifications).toEqual({
@@ -74,7 +74,7 @@ describe('Todo List Domain Model', () => {
         .withColor(invalidColorNoHash)
         .build();
 
-      const todoNoHash = TodoList.create(propsNoHash);
+      const todoNoHash = TodosList.create(propsNoHash);
 
       expect(todoNoHash.containNotifications).toBe(true);
       expect(todoNoHash.notifications).toEqual({
@@ -88,7 +88,7 @@ describe('Todo List Domain Model', () => {
         .withColor(invalidColorWrongFormat)
         .build();
 
-      const todoWrongFormat = TodoList.create(propsWrongFormat);
+      const todoWrongFormat = TodosList.create(propsWrongFormat);
 
       expect(todoWrongFormat.containNotifications).toBe(true);
       expect(todoWrongFormat.notifications).toEqual({
@@ -100,20 +100,20 @@ describe('Todo List Domain Model', () => {
   describe('getters', () => {
     it('should return the correct id', () => {
       const id = '123e4567-e89b-12d3-a456-426614174000';
-      const todo = TodoList.create({ ...props, id });
+      const todo = TodosList.create({ ...props, id });
 
       expect(id).toBe(todo.id);
       expect(todo.containNotifications).toBe(false);
     });
 
     it('should return the correct name', () => {
-      const todo = TodoList.create(props);
+      const todo = TodosList.create(props);
 
       expect(todo.name).toBe(props.name);
     });
 
     it('should return the correct color', () => {
-      const todo = TodoList.create(props);
+      const todo = TodosList.create(props);
 
       expect(todo.color).toBe(props.color);
     });
@@ -121,7 +121,7 @@ describe('Todo List Domain Model', () => {
 
   describe('update', () => {
     it('should update todo with valid properties', () => {
-      const todo = TodoList.create(props);
+      const todo = TodosList.create(props);
 
       const newAssignorProps = TodoListDataBuilder.anTodoList()
         .withName('New TodoList')
@@ -137,7 +137,7 @@ describe('Todo List Domain Model', () => {
 
   describe('create', () => {
     it('should create a new TodoList on success', () => {
-      const todo = TodoList.create(props);
+      const todo = TodosList.create(props);
 
       expect(todo.id).toBeDefined();
       expect(todo.id).toHaveLength(36);

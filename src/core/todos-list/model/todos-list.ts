@@ -1,13 +1,13 @@
-import { TodoListProps } from './types';
+import { TodosListProps } from './types';
 import { Entity } from '@core/shared/model';
 import { Name, Color } from '@core/shared/value-objects';
 import { Notification } from '@core/shared/notification';
 
-export class TodoList extends Entity<TodoListProps> {
+export class TodosList extends Entity<TodosListProps> {
   private _name: Name;
   private _color: Color;
 
-  constructor(props: TodoListProps) {
+  constructor(props: TodosListProps) {
     const notification = new Notification();
     super(props, notification);
 
@@ -15,11 +15,11 @@ export class TodoList extends Entity<TodoListProps> {
     this._color = new Color(props.color, this._notification);
   }
 
-  static create(props: TodoListProps): TodoList {
-    return new TodoList(props);
+  static create(props: TodosListProps): TodosList {
+    return new TodosList(props);
   }
 
-  public update(props: Partial<TodoListProps>): void {
+  public update(props: Partial<TodosListProps>): void {
     this._name = new Name(props.name, this._notification);
     this._color = new Color(props.color, this._notification);
   }
