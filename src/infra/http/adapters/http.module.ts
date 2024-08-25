@@ -1,16 +1,26 @@
 import { Module } from '@nestjs/common';
 
-import { TodoRepository } from '@core/todo/ports/repository';
-import { UpdateTodoNameUseCase } from '@core/todo/usecases/update-name';
 import {
+  SaveTodoUseCase,
+  UpdateTodoNameUseCase,
+  UpdateTodoStatusUseCase,
+} from '@core/todo/usecases';
+import {
+  SaveTodoController,
   UpdateTodoNameController,
   UpdateTodoStatusController,
 } from '@infra/http/adapters/controllers/todo';
-import { UpdateTodoStatusUseCase } from '@core/todo/usecases/update-status';
+import { TodoRepository } from '@core/todo/ports/repository';
 
 @Module({
   imports: [],
   providers: [
+    {
+      provide: SaveTodoUseCase,
+      useFactory: (todoRepository: TodoRepository): SaveTodoUseCase =>
+        new SaveTodoUseCase(todoRepository),
+      inject: [TodoRepository],
+    },
     {
       provide: UpdateTodoNameUseCase,
       useFactory: (todoRepository: TodoRepository): UpdateTodoNameUseCase =>
@@ -24,6 +34,10 @@ import { UpdateTodoStatusUseCase } from '@core/todo/usecases/update-status';
       inject: [TodoRepository],
     },
   ],
-  controllers: [UpdateTodoNameController, UpdateTodoStatusController],
+  controllers: [
+    SaveTodoController,
+    UpdateTodoNameController,
+    UpdateTodoStatusController,
+  ],
 })
 export class HttpModule {}
