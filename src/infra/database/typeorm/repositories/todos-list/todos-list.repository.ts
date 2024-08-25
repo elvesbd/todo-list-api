@@ -20,9 +20,9 @@ export class TypeORMTodosListRepository implements TodosListRepository {
     await this.repository.save(newTodosList);
   }
 
-  public async remove(todosListId: string): Promise<void> {
+  public async remove(id: string): Promise<void> {
     const todosList = await this.repository.findOne({
-      where: { id: todosListId },
+      where: { id },
     });
 
     await this.repository.softRemove(todosList);
@@ -36,9 +36,7 @@ export class TypeORMTodosListRepository implements TodosListRepository {
 
   public async getById(id: string): Promise<TodosList | null> {
     const todosList = await this.repository.findOne({
-      where: {
-        id: id,
-      },
+      where: { id },
     });
 
     if (!todosList) return null;
