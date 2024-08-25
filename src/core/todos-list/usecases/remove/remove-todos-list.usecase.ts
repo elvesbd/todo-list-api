@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { UseCase } from '@core/shared/interfaces';
-import { TodoRepository } from '@core/todo/ports/repository';
+import { TodosListRepository } from '@core/todos-list/ports/repository';
 
 export type RemoveTodosListInput = {
   id: string;
@@ -11,17 +11,17 @@ export type RemoveTodosListInput = {
 export class RemoveTodosListUseCase
   implements UseCase<RemoveTodosListInput, void>
 {
-  constructor(private readonly todoRepository: TodoRepository) {}
+  constructor(private readonly todosListRepository: TodosListRepository) {}
 
   async execute(input: RemoveTodosListInput): Promise<void> {
     const { id } = input;
 
-    const todo = await this.todoRepository.getById(id);
+    const todo = await this.todosListRepository.getById(id);
 
     if (!todo) {
       throw new NotFoundException('Todo not found');
     }
 
-    await this.todoRepository.remove(id);
+    await this.todosListRepository.remove(id);
   }
 }
