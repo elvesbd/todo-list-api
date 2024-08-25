@@ -18,6 +18,11 @@ import { SaveTodosListUseCase } from '@core/todos-list/usecases/save';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
 import { RemoveTodosListUseCase } from '@core/todos-list/usecases/remove';
 import { GetAllTodosListUseCase } from '@core/todos-list/usecases/get-all';
+import {
+  GetAllTodosListController,
+  RemoveTodosListController,
+  SaveTodosListController,
+} from './controllers/todos-list';
 
 @Module({
   imports: [DatabaseModule],
@@ -75,6 +80,9 @@ import { GetAllTodosListUseCase } from '@core/todos-list/usecases/get-all';
     RemoveTodoController,
     UpdateTodoNameController,
     UpdateTodoStatusController,
+    SaveTodosListController,
+    RemoveTodosListController,
+    GetAllTodosListController,
   ],
 })
 export class HttpModule {}
