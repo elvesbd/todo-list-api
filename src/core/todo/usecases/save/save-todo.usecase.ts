@@ -4,23 +4,20 @@ import { Todo } from '@core/todo/model';
 import { UseCase } from '@core/shared/interfaces';
 import { TodoRepository } from '@core/todo/ports/repository';
 
-type RegisterTodoInput = {
+type Input = {
   name: string;
   status: boolean;
 };
 
-type SaveTodoResponse = {
-  todo?: Todo;
-  notifications?: { [key: string]: string[] };
+type Output = {
+  todo: Todo;
 };
 
 @Injectable()
-export class SaveTodoUseCase
-  implements UseCase<RegisterTodoInput, SaveTodoResponse>
-{
+export class SaveTodoUseCase implements UseCase<Input, Output> {
   constructor(private readonly todoRepository: TodoRepository) {}
 
-  async execute(input: RegisterTodoInput): Promise<SaveTodoResponse> {
+  async execute(input: Input): Promise<Output> {
     const { name, status } = input;
     const todo = Todo.create({
       name,
@@ -28,7 +25,7 @@ export class SaveTodoUseCase
     });
 
     if (todo.containNotifications) {
-      return { notifications: todo.notifications };
+      return { todo };
     }
 
     await this.todoRepository.save(todo);
