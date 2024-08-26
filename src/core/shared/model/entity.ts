@@ -12,7 +12,7 @@ export class Entity<T> {
   protected _id: Id;
   protected _notification: Notification;
 
-  constructor(props: T & EntityProps, notification: Notification) {
+  constructor(props: T & EntityProps, notification?: Notification) {
     this._id = new Id(props?.id);
     this._notification = notification;
   }
