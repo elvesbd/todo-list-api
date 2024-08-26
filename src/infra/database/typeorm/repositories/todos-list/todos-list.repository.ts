@@ -30,8 +30,6 @@ export class TypeORMTodosListRepository implements TodosListRepository {
   }
 
   public async getById(id: string): Promise<TodosList | null> {
-    console.log({ id });
-
     const result = await this.dataSource.query(
       `SELECT * FROM todos_list WHERE id = $1 AND "deletedAt" IS NULL`,
       [id],

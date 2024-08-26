@@ -1,5 +1,5 @@
+import { User } from '@core/auth/model';
 import { dataSource as AppDataSource } from '../datasource';
-import { User } from '../entities/user.entity';
 
 const seedDefaultUser = async () => {
   const dataSource = AppDataSource;
