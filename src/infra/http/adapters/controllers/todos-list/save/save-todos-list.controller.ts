@@ -7,7 +7,7 @@ import {
 } from '@nestjs/swagger';
 
 import { ApiPath, ApiTodosListTag } from '../../constants';
-import { SaveTodosListUseCase } from '@core/todos-list/usecases/save';
+import { SaveTodosListUseCase } from '@core/todos-list/usecases';
 import { TodosListViewModel } from '@infra/http/adapters/view-model/todosList';
 import { SaveTodosListDto } from '@infra/http/adapters/controllers/todos-list/dtos';
 

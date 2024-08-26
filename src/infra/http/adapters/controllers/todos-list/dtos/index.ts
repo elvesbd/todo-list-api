@@ -1,3 +1,2 @@
-export * from './save';
-export * from './update-name';
-export * from './update-status';
+export * from './save/save-todos-list.dto';
+export * from './update/update-todos-list.dto';

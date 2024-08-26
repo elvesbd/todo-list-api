@@ -13,7 +13,7 @@ import {
 } from '@nestjs/swagger';
 
 import { ApiPath, ApiTodosListTag } from '../../constants';
-import { RemoveTodosListUseCase } from '@core/todos-list/usecases/remove';
+import { RemoveTodosListUseCase } from '@core/todos-list/usecases';
 
 @ApiTags(ApiTodosListTag)
 @Controller(ApiPath)

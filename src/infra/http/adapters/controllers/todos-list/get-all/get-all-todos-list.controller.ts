@@ -6,7 +6,7 @@ import {
   TodosListVMResponse,
 } from '@infra/http/adapters/view-model/todosList';
 import { ApiPath, ApiTodosListTag } from '../../constants';
-import { GetAllTodosListUseCase } from '@core/todos-list/usecases/get-all';
+import { GetAllTodosListUseCase } from '@core/todos-list/usecases';
 
 @ApiTags(ApiTodosListTag)
 @Controller(ApiPath)

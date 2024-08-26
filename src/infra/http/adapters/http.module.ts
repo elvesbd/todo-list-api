@@ -1,6 +1,13 @@
 import { Module } from '@nestjs/common';
 
 import {
+  GetAllTodosListUseCase,
+  RemoveTodosListUseCase,
+  SaveTodosListUseCase,
+  UpdateTodosListUseCase,
+} from '@core/todos-list/usecases';
+
+import {
   SaveTodoUseCase,
   RemoveTodoUseCase,
   UpdateTodoNameUseCase,
@@ -11,6 +18,7 @@ import {
   GetAllTodosListController,
   RemoveTodosListController,
   SaveTodosListController,
+  UpdateTodosListController,
 } from './controllers/todos-list';
 import {
   SaveTodoController,
@@ -21,10 +29,7 @@ import {
 } from '@infra/http/adapters/controllers/todo';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { DatabaseModule } from '@infra/database/database.module';
-import { SaveTodosListUseCase } from '@core/todos-list/usecases/save';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
-import { RemoveTodosListUseCase } from '@core/todos-list/usecases/remove';
-import { GetAllTodosListUseCase } from '@core/todos-list/usecases/get-all';
 
 @Module({
   imports: [DatabaseModule],
@@ -84,6 +89,14 @@ import { GetAllTodosListUseCase } from '@core/todos-list/usecases/get-all';
         new GetAllTodosListUseCase(todosListRepository),
       inject: [TodosListRepository],
     },
+    {
+      provide: UpdateTodosListUseCase,
+      useFactory: (
+        todosListRepository: TodosListRepository,
+      ): UpdateTodosListUseCase =>
+        new UpdateTodosListUseCase(todosListRepository),
+      inject: [TodosListRepository],
+    },
   ],
   controllers: [
     SaveTodoController,
@@ -93,6 +106,7 @@ import { GetAllTodosListUseCase } from '@core/todos-list/usecases/get-all';
     SaveTodosListController,
     RemoveTodosListController,
     GetAllTodosListController,
+    UpdateTodosListController,
     GetTodosByTodosListController,
   ],
 })
