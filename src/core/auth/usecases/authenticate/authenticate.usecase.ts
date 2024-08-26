@@ -1,7 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 
-import { UserRepository } from '@core/auth/ports/repository';
-import { TokenManager } from '@core/auth/ports/token-manager';
+import { UserRepository, TokenManager } from '@core/auth/ports';
 
 type Input = {
   email: string;
