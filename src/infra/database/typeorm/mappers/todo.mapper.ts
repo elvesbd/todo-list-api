@@ -1,5 +1,5 @@
 import { Todo } from '@core/todo/model';
-import { TypeORMTodoEntity } from '../entities';
+import { TypeORMTodoEntity } from '@infra/database/typeorm/entities';
 
 export class TypeORMTodoMapper {
   private constructor() {

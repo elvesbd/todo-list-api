@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+
 import { Notification } from '@core/shared/notification';
 
 export class Id {

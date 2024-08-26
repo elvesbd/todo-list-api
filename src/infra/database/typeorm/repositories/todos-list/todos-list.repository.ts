@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { DataSource } from 'typeorm';
 
 import { TodosList } from '@core/todos-list/model';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
 import { TypeORMTodosListMapper } from '@infra/database/typeorm/mappers';
-import { DataSource } from 'typeorm';
 
 @Injectable()
 export class TypeORMTodosListRepository implements TodosListRepository {

@@ -1,13 +1,11 @@
 import {
   Entity,
   Column,
-  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { TypeORMTodoEntity } from './todo.entity';
 
 @Entity('todos_list')
 export class TypeORMTodosListEntity {

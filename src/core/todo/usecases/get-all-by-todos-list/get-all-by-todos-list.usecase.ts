@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { TodoRepository } from '@core/todo/ports/repository';
+
 import { Todo } from '@core/todo/model';
+import { TodoRepository } from '@core/todo/ports/repository';
 
 @Injectable()
 export class GetTodosByTodosListUseCase {

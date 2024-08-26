@@ -1,7 +1,8 @@
-import { UseCase } from '@core/shared/interfaces';
-import { Todo } from '@core/todo/model';
-import { TodoRepository } from '@core/todo/ports/repository';
 import { Injectable, NotFoundException } from '@nestjs/common';
+
+import { Todo } from '@core/todo/model';
+import { UseCase } from '@core/shared/interfaces';
+import { TodoRepository } from '@core/todo/ports/repository';
 
 type Input = {
   id: string;

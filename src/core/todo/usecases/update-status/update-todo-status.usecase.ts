@@ -1,6 +1,7 @@
+import { Injectable, NotFoundException } from '@nestjs/common';
+
 import { UseCase } from '@core/shared/interfaces';
 import { TodoRepository } from '@core/todo/ports/repository';
-import { Injectable, NotFoundException } from '@nestjs/common';
 
 type UpdateTodoStatusInput = {
   id: string;
