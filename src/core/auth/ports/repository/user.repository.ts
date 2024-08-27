@@ -1,4 +1,4 @@
-import { User } from '@infra/database/typeorm/entities';
+import { User } from '@core/auth/model';
 
 export abstract class UserRepository {
   abstract getByEmail(email: string): Promise<User>;

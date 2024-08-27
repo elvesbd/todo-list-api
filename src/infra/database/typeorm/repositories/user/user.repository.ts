@@ -11,7 +11,7 @@ export class TypeORMUserRepository implements UserRepository {
 
   public async getByEmail(email: string): Promise<User | null> {
     const result = await this.dataSource.query(
-      `SELECT * FROM users WHERE id = $`,
+      `SELECT * FROM users WHERE email = $1`,
       [email],
     );
 

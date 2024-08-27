@@ -31,11 +31,12 @@ import { AuthenticateUseCase } from '@core/auth/usecases';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { TokenManager, UserRepository } from '@core/auth/ports';
 import { DatabaseModule } from '@infra/database/database.module';
+import { ProviderModule } from '@infra/providers/provider.module';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
 import { AuthenticateController } from '@infra/http/adapters/controllers/auth';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, ProviderModule],
   providers: [
     {
       provide: AuthenticateUseCase,
@@ -44,7 +45,7 @@ import { AuthenticateController } from '@infra/http/adapters/controllers/auth';
         todoRepository: UserRepository,
       ): AuthenticateUseCase =>
         new AuthenticateUseCase(tokenManager, todoRepository),
-      inject: [TodoRepository],
+      inject: [TokenManager, UserRepository],
     },
     {
       provide: SaveTodoUseCase,

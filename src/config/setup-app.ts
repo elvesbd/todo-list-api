@@ -1,4 +1,7 @@
+import { Reflector } from '@nestjs/core';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
+
+import { JwtAuthGuard } from '@infra/providers/jwt';
 
 export const setupApp = (app: INestApplication): INestApplication => {
   app.useGlobalPipes(
@@ -7,6 +10,9 @@ export const setupApp = (app: INestApplication): INestApplication => {
       forbidNonWhitelisted: true,
     }),
   );
+
+  const reflector = app.get(Reflector);
+  app.useGlobalGuards(new JwtAuthGuard(reflector));
 
   app.enableCors({
     origin: '*',

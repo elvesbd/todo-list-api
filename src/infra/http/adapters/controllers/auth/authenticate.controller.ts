@@ -8,9 +8,11 @@ import {
 } from '@nestjs/swagger';
 
 import { ApiPath, ApiAuthTag } from '../constants';
+import { IsPublic } from '@infra/providers/decorators';
 import { AuthenticateUseCase } from '@core/auth/usecases';
 import { AuthenticateDto } from './dtos/authenticate.dto';
 
+@IsPublic()
 @ApiTags(ApiAuthTag)
 @Controller(ApiPath)
 export class AuthenticateController {
