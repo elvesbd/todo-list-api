@@ -21,8 +21,7 @@
     "typeorm": "node ./node_modules/typeorm/cli",
     "mig:run": "npm run typeorm -- migration:run -d ./dist/infra/database/typeorm/datasource.js",
     "mig:crt": "npm run typeorm -- migration:create ./dist/infra/database/typeorm/migrations/$npm_config_name",
-    "mig:rev": "npm run typeorm -- migration:revert -d ./dist/infra/database/typeorm/datasource.js",
-    "seed": "node ./dist/infra/database/typeorm/seeds/default-user.seed.js"
+    "mig:rev": "npm run typeorm -- migration:revert -d ./dist/infra/database/typeorm/datasource.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

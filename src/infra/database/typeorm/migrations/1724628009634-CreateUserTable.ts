@@ -21,6 +21,11 @@ export class CreateUserTable1724628009634 implements MigrationInterface {
             name: 'password',
             type: 'varchar',
           },
+          {
+            name: 'createdAt',
+            type: 'timestamp',
+            default: 'CURRENT_TIMESTAMP',
+          },
         ],
       }),
       true,

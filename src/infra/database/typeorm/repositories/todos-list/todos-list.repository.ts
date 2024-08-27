@@ -11,11 +11,6 @@ export class TypeORMTodosListRepository implements TodosListRepository {
 
   public async remove(id: string): Promise<void> {
     await this.dataSource.query(
-      `UPDATE todos_list SET "deletedAt" = CURRENT_TIMESTAMP WHERE "todosListId" = $1`,
-      [id],
-    );
-
-    await this.dataSource.query(
       `UPDATE todos_list SET "deletedAt" = CURRENT_TIMESTAMP WHERE id = $1`,
       [id],
     );

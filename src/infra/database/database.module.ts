@@ -7,11 +7,11 @@ import {
   TypeORMTodosListRepository,
 } from '@infra/database/typeorm/repositories';
 import { dataSource } from './typeorm/datasource';
+import { UserRepository } from '@core/auth/ports';
 import { DatabaseService } from './database.service';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
-import { UserRepository } from '@core/auth/ports';
 
 @Module({
   imports: [

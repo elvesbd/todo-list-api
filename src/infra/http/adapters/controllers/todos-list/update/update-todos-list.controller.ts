@@ -39,7 +39,7 @@ export class UpdateTodosListController {
   @ApiUnprocessableEntityResponse({
     description: 'Dados de entrada inválidos.',
   })
-  @Put('todos-list/:id/update')
+  @Put('todos-list/:id')
   @HttpCode(HttpStatus.CREATED)
   public async updateTodosList(
     @Param('id') id: string,
