@@ -51,6 +51,6 @@ describe('UpdateTodoStatusUseCase', () => {
     await sut.execute({ id, status });
 
     expect(todoRepository.update).toHaveBeenCalled();
-    expect(todoRepository.update).toHaveBeenCalledWith(expect.any(Todo));
+    expect(todoRepository.update).toHaveBeenCalledWith(todo);
   });
 });
