@@ -1,10 +1,10 @@
 # TodosApp
 
-![GitHub repo size](https://img.shields.io/github/repo-size/elvesbd/space-backend?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/elvesbd/space-backend?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/elvesbd/space-backend?style=for-the-badge)
-![GitHub issues](https://img.shields.io/github/issues-raw/elvesbd/space-backend?style=for-the-badge)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/elvesbd/space-backend?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/elvesbd/todo-list-api?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/elvesbd/todo-list-api?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/elvesbd/todo-list-api?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues-raw/elvesbd/todo-list-api?style=for-the-badge)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/elvesbd/todo-list-api?style=for-the-badge)
 
 <img src="https://i.imgur.com/h2IhceA.png">
 
