@@ -2,9 +2,9 @@ import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { Todo } from '@core/todo/model';
+import { UpdateTodoNameUseCase } from '@core/todo/usecases';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { TodoDataBuilder } from '@core/test/__mocks__/data-builder';
-import { UpdateTodoNameUseCase } from '@core/todo/usecases';
 
 describe('UpdateTodoNameUseCase', () => {
   let sut: UpdateTodoNameUseCase;
@@ -12,7 +12,7 @@ describe('UpdateTodoNameUseCase', () => {
 
   const id = '65b1c7d4-0f3a-4386-b0ef-32202f36b26b';
   const input = TodoDataBuilder.anTodo().build();
-  const todo = Todo.create(input);
+  const todo = Todo.create({ id, ...input });
 
   beforeEach(async () => {
     jest.clearAllMocks();
@@ -20,7 +20,7 @@ describe('UpdateTodoNameUseCase', () => {
     const TodoRepositoryProvider = {
       provide: TodoRepository,
       useValue: {
-        save: jest.fn().mockResolvedValue(0),
+        update: jest.fn().mockResolvedValue(0),
         getById: jest.fn().mockResolvedValue(todo),
       },
     };
@@ -51,7 +51,7 @@ describe('UpdateTodoNameUseCase', () => {
   it('should call the repository save method on success', async () => {
     await sut.execute({ id, ...input });
 
-    expect(todoRepository.save).toHaveBeenCalled();
-    expect(todoRepository.save).toHaveBeenCalledWith(expect.any(Todo));
+    expect(todoRepository.update).toHaveBeenCalled();
+    expect(todoRepository.update).toHaveBeenCalledWith(todo);
   });
 });

@@ -3,13 +3,13 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TodosList } from '@core/todos-list/model';
 import { SaveTodosListUseCase } from '@core/todos-list/usecases';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
-import { TodoListDataBuilder } from '@core/test/__mocks__/data-builder';
+import { TodosListDataBuilder } from '@core/test/__mocks__/data-builder';
 
 describe('SaveTodosListUseCase', () => {
   let sut: SaveTodosListUseCase;
   let todosListRepository: TodosListRepository;
 
-  const input = TodoListDataBuilder.anTodoList().build();
+  const input = TodosListDataBuilder.anTodoList().build();
 
   beforeEach(async () => {
     jest.clearAllMocks();
@@ -36,7 +36,7 @@ describe('SaveTodosListUseCase', () => {
 
   describe('execute', () => {
     it('should not call the repository save method if there are notifications', async () => {
-      const input = TodoListDataBuilder.anTodoList().withName('').build();
+      const input = TodosListDataBuilder.anTodoList().withName('').build();
 
       await sut.execute(input);
 

@@ -2,14 +2,14 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { TodosList } from '@core/todos-list/model';
 import { GetAllTodosListUseCase } from '@core/todos-list/usecases';
-import { TodoListDataBuilder } from '@core/test/__mocks__/data-builder';
+import { TodosListDataBuilder } from '@core/test/__mocks__/data-builder';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
 
 describe('GetAllTodosListUseCase', () => {
   let sut: GetAllTodosListUseCase;
   let todosListRepository: TodosListRepository;
 
-  const input = TodoListDataBuilder.anTodoList().build();
+  const input = TodosListDataBuilder.anTodoList().build();
   const todo = TodosList.create(input);
 
   beforeEach(async () => {
