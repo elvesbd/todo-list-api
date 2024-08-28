@@ -2,7 +2,7 @@ import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { TodosList } from '@core/todos-list/model';
-import { TodoListDataBuilder } from '@core/test/__mocks__/data-builder';
+import { TodosListDataBuilder } from '@core/test/__mocks__/data-builder';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
 import {
   RemoveTodosListInput,
@@ -13,7 +13,7 @@ describe('RemoveTodosListUseCase', () => {
   let sut: RemoveTodosListUseCase;
   let todosListRepository: TodosListRepository;
 
-  const input = TodoListDataBuilder.anTodoList().build();
+  const input = TodosListDataBuilder.anTodoList().build();
   const todosList = TodosList.create(input);
 
   beforeEach(async () => {

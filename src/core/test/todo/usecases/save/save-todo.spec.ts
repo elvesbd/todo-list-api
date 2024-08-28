@@ -9,6 +9,7 @@ describe('SaveTodoUseCase', () => {
   let sut: SaveTodoUseCase;
   let todoRepository: TodoRepository;
 
+  const todosLisId = '65b1c7d4-0f3a-4386-b0ef-32202f36b26b';
   const input = TodoDataBuilder.anTodo().build();
 
   beforeEach(async () => {
@@ -38,23 +39,23 @@ describe('SaveTodoUseCase', () => {
     it('should not call the repository save method if there are notifications', async () => {
       const input = TodoDataBuilder.anTodo().withName('').build();
 
-      await sut.execute(input);
+      await sut.execute({ todosLisId, ...input });
 
       expect(todoRepository.save).not.toHaveBeenCalled();
     });
 
     it('should call repository save with correct values', async () => {
-      await sut.execute(input);
+      const { todo } = await sut.execute({ todosLisId, ...input });
 
       expect(todoRepository.save).toHaveBeenCalledTimes(1);
-      expect(todoRepository.save).toHaveBeenCalledWith(expect.any(Todo));
+      expect(todoRepository.save).toHaveBeenCalledWith(todosLisId, todo);
     });
 
     it('should register a new todo on success', async () => {
-      const output = await sut.execute(input);
+      const output = await sut.execute({ todosLisId, ...input });
 
       expect(output).toBeDefined();
-      expect(output.todo.notifications).toBeUndefined();
+      expect(output.todo.containNotifications).toBeFalsy();
     });
   });
 });
