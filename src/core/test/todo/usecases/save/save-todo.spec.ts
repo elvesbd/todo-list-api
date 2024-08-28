@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { Todo } from '@core/todo/model';
-import { SaveTodoUseCase } from '@core/todo/usecases/save';
+import { SaveTodoUseCase } from '@core/todo/usecases';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { TodoDataBuilder } from '@core/test/__mocks__/data-builder';
 
@@ -54,7 +54,7 @@ describe('SaveTodoUseCase', () => {
       const output = await sut.execute(input);
 
       expect(output).toBeDefined();
-      expect(output.notifications).toBeUndefined();
+      expect(output.todo.notifications).toBeUndefined();
     });
   });
 });

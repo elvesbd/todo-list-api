@@ -4,7 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Todo } from '@core/todo/model';
 import { TodoRepository } from '@core/todo/ports/repository';
 import { TodoDataBuilder } from '@core/test/__mocks__/data-builder';
-import { UpdateTodoNameUseCase } from '@core/todo/usecases/update-name';
+import { UpdateTodoNameUseCase } from '@core/todo/usecases';
 
 describe('UpdateTodoNameUseCase', () => {
   let sut: UpdateTodoNameUseCase;

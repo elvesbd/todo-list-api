@@ -1,12 +1,12 @@
 type CreateTodoInput = {
   name: string;
-  status: boolean;
+  todosLisId: string
 };
 
 export class TodoDataBuilder {
   private props: CreateTodoInput = {
     name: 'John Doe',
-    status: false,
+    todosLisId: 'd6f4c58a-3f30-4b0e-b0f3-05c12d7c740f',
   };
 
   public static anTodo(): TodoDataBuilder {
@@ -18,8 +18,8 @@ export class TodoDataBuilder {
     return this;
   }
 
-  public withStatus(status: boolean): this {
-    this.props.status = status;
+  public withTodosLisId(todosLisId: string): this {
+    this.props.todosLisId = todosLisId;
     return this;
   }
 

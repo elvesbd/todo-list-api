@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { TodosList } from '@core/todos-list/model';
-import { SaveTodosListUseCase } from '@core/todos-list/usecases/save';
+import { SaveTodosListUseCase } from '@core/todos-list/usecases';
 import { TodosListRepository } from '@core/todos-list/ports/repository';
 import { TodoListDataBuilder } from '@core/test/__mocks__/data-builder';
 

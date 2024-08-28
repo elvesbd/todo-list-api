@@ -3,8 +3,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { Todo } from '@core/todo/model/todo';
 import { TodoRepository } from '@core/todo/ports/repository';
+import { UpdateTodoStatusUseCase } from '@core/todo/usecases';
 import { TodoDataBuilder } from '@core/test/__mocks__/data-builder';
-import { UpdateTodoStatusUseCase } from '@core/todo/usecases/update-status';
 
 describe('UpdateTodoStatusUseCase', () => {
   let sut: UpdateTodoStatusUseCase;
@@ -20,7 +20,7 @@ describe('UpdateTodoStatusUseCase', () => {
     const TodoRepositoryProvider = {
       provide: TodoRepository,
       useValue: {
-        save: jest.fn().mockResolvedValue(0),
+        update: jest.fn().mockResolvedValue(0),
         getById: jest.fn().mockResolvedValue(todo),
       },
     };
@@ -48,10 +48,10 @@ describe('UpdateTodoStatusUseCase', () => {
     );
   });
 
-  it('should call the repository save method on success', async () => {
+  it('should call the repository update method on success', async () => {
     await sut.execute({ id, ...input });
 
-    expect(todoRepository.save).toHaveBeenCalled();
-    expect(todoRepository.save).toHaveBeenCalledWith(expect.any(Todo));
+    expect(todoRepository.update).toHaveBeenCalled();
+    expect(todoRepository.update).toHaveBeenCalledWith(expect.any(Todo));
   });
 });

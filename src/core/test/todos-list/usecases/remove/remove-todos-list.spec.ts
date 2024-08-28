@@ -7,7 +7,7 @@ import { TodosListRepository } from '@core/todos-list/ports/repository';
 import {
   RemoveTodosListInput,
   RemoveTodosListUseCase,
-} from '@core/todos-list/usecases/remove';
+} from '@core/todos-list/usecases';
 
 describe('RemoveTodosListUseCase', () => {
   let sut: RemoveTodosListUseCase;
