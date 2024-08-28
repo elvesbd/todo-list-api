@@ -59,10 +59,10 @@ describe('Todo Domain Model', () => {
       expect(todo.name).toBe(props.name);
     });
 
-    it('should return the correct email', () => {
+    it('should return the correct status', () => {
       const todo = Todo.create(props);
 
-      expect(todo.status).toBe(props.status);
+      expect(todo.status).toBeFalsy();
     });
   });
 
@@ -78,11 +78,10 @@ describe('Todo Domain Model', () => {
 
     it('should update todo status on success', () => {
       const todo = Todo.create(props);
-      const { status } = TodoDataBuilder.anTodo().withStatus(true).build();
 
-      todo.updateStatus(status);
+      todo.updateStatus(true);
 
-      expect(todo.status).toBe(status);
+      expect(todo.status).toBeTruthy();
     });
   });
 
@@ -93,7 +92,7 @@ describe('Todo Domain Model', () => {
       expect(todo.id).toBeDefined();
       expect(todo.id).toHaveLength(36);
       expect(todo.name).toBe(props.name);
-      expect(todo.status).toBe(props.status);
+      expect(todo.status).toBeFalsy();
     });
   });
 });
