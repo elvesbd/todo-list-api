@@ -1,5 +1,11 @@
 import { HttpCode, HttpStatus, Controller, Get, Param } from '@nestjs/common';
-import { ApiTags, ApiParam, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiParam,
+  ApiResponse,
+  ApiOperation,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 
 import {
   TodoViewModel,
@@ -8,6 +14,7 @@ import {
 import { ApiPath, ApiTodoTag } from '../../constants';
 import { GetTodosByTodosListUseCase } from '@core/todo/usecases';
 
+@ApiBearerAuth()
 @ApiTags(ApiTodoTag)
 @Controller(ApiPath)
 export class GetTodosByTodosListController {

@@ -11,6 +11,7 @@ import {
   ApiBody,
   ApiOperation,
   ApiUnprocessableEntityResponse,
+  ApiBearerAuth,
 } from '@nestjs/swagger';
 
 import { ApiPath, ApiTodosListTag } from '../../constants';
@@ -20,6 +21,7 @@ import {
   UpdateTodosListDto,
 } from '@infra/http/adapters/controllers/todos-list/dtos';
 
+@ApiBearerAuth()
 @ApiTags(ApiTodosListTag)
 @Controller(ApiPath)
 export class UpdateTodosListController {

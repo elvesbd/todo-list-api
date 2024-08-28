@@ -9,11 +9,13 @@ import { setupDocs } from '@config/setup-docs';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = new Logger();
+  const configService = app.get(ConfigService);
 
   setupApp(app);
-  setupDocs(app);
 
-  const configService = app.get(ConfigService);
+  const isDevelopment = configService.get<string>('NODE_ENV') === 'development';
+  if (isDevelopment) setupDocs(app);
+
   const port = configService.get<number>('APP_PORT') ?? 3000;
 
   await app.listen(port);

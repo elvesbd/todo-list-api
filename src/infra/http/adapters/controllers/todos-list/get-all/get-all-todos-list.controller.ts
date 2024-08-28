@@ -1,4 +1,9 @@
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { HttpCode, HttpStatus, Controller, Get } from '@nestjs/common';
 
 import {
@@ -8,6 +13,7 @@ import {
 import { ApiPath, ApiTodosListTag } from '../../constants';
 import { GetAllTodosListUseCase } from '@core/todos-list/usecases';
 
+@ApiBearerAuth()
 @ApiTags(ApiTodosListTag)
 @Controller(ApiPath)
 export class GetAllTodosListController {

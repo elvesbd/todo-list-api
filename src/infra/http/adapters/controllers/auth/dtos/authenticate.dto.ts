@@ -4,7 +4,7 @@ import { IsEmail, IsString, MinLength, IsNotEmpty } from 'class-validator';
 export class AuthenticateDto {
   @ApiProperty({
     description: 'Endereço de e-mail do usuário para autenticação.',
-    example: 'usuario@exemplo.com',
+    example: 'admin@mail.com',
   })
   @IsString()
   @IsNotEmpty({ message: 'O campo de e-mail não pode estar vazio.' })
@@ -13,7 +13,7 @@ export class AuthenticateDto {
 
   @ApiProperty({
     description: 'Senha do usuário.',
-    example: 'senhaSegura123!',
+    example: '@password123',
     minLength: 8,
   })
   @IsString()

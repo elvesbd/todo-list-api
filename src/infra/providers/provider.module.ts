@@ -12,7 +12,7 @@ import { JwtStrategy, JWTService } from '@infra/providers/jwt';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         secret: config.getOrThrow('JWT_SECRET'),
-        //signOptions: { expiresIn: '360s' },
+        signOptions: { expiresIn: '1d' },
       }),
     }),
   ],

@@ -4,6 +4,7 @@ import {
   ApiBody,
   ApiOperation,
   ApiUnprocessableEntityResponse,
+  ApiBearerAuth,
 } from '@nestjs/swagger';
 
 import { ApiPath, ApiTodoTag } from '../../constants';
@@ -11,6 +12,7 @@ import { SaveTodoUseCase } from '@core/todo/usecases';
 import { TodoViewModel } from '@infra/http/adapters/view-model';
 import { SaveTodoDto } from '@infra/http/adapters/controllers/todo/dtos';
 
+@ApiBearerAuth()
 @ApiTags(ApiTodoTag)
 @Controller(ApiPath)
 export class SaveTodoController {
