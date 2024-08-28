@@ -1,12 +1,12 @@
 import { TodosList } from '@core/todos-list/model';
-import { TodoListDataBuilder } from '@core/test/__mocks__/data-builder';
+import { TodosListDataBuilder } from '@core/test/__mocks__/data-builder';
 
 describe('Todo List Domain Model', () => {
-  const props = TodoListDataBuilder.anTodoList().build();
+  const props = TodosListDataBuilder.anTodoList().build();
 
   describe('constructor', () => {
     it('should add notification if name is null', () => {
-      const props = TodoListDataBuilder.anTodoList().withName(null).build();
+      const props = TodosListDataBuilder.anTodoList().withName(null).build();
 
       const assignor = TodosList.create(props);
 
@@ -21,7 +21,7 @@ describe('Todo List Domain Model', () => {
     });
 
     it('should add notification if name is empty', () => {
-      const props = TodoListDataBuilder.anTodoList().withName('').build();
+      const props = TodosListDataBuilder.anTodoList().withName('').build();
 
       const todo = TodosList.create(props);
 
@@ -33,7 +33,7 @@ describe('Todo List Domain Model', () => {
 
     it('should add a notification if the name exceeds 140 characters', () => {
       const bigName = 'A'.repeat(141);
-      const props = TodoListDataBuilder.anTodoList().withName(bigName).build();
+      const props = TodosListDataBuilder.anTodoList().withName(bigName).build();
 
       const assignor = TodosList.create(props);
 
@@ -44,7 +44,7 @@ describe('Todo List Domain Model', () => {
     });
 
     it('should add notification if color is null', () => {
-      const props = TodoListDataBuilder.anTodoList().withColor(null).build();
+      const props = TodosListDataBuilder.anTodoList().withColor(null).build();
 
       const todoList = TodosList.create(props);
 
@@ -58,7 +58,7 @@ describe('Todo List Domain Model', () => {
     });
 
     it('should add notification if color is empty', () => {
-      const props = TodoListDataBuilder.anTodoList().withColor('').build();
+      const props = TodosListDataBuilder.anTodoList().withColor('').build();
 
       const todoList = TodosList.create(props);
 
@@ -70,7 +70,7 @@ describe('Todo List Domain Model', () => {
 
     it('should add notification if color does not include the "#" symbol', () => {
       const invalidColorNoHash = 'RRGGBB';
-      const propsNoHash = TodoListDataBuilder.anTodoList()
+      const propsNoHash = TodosListDataBuilder.anTodoList()
         .withColor(invalidColorNoHash)
         .build();
 
@@ -84,7 +84,7 @@ describe('Todo List Domain Model', () => {
 
     it('should add notification if color has "#" but is in an invalid format', () => {
       const invalidColorWrongFormat = '#FF573';
-      const propsWrongFormat = TodoListDataBuilder.anTodoList()
+      const propsWrongFormat = TodosListDataBuilder.anTodoList()
         .withColor(invalidColorWrongFormat)
         .build();
 
@@ -123,7 +123,7 @@ describe('Todo List Domain Model', () => {
     it('should update todo with valid properties', () => {
       const todo = TodosList.create(props);
 
-      const newAssignorProps = TodoListDataBuilder.anTodoList()
+      const newAssignorProps = TodosListDataBuilder.anTodoList()
         .withName('New TodoList')
         .withColor('#CCC')
         .build();
