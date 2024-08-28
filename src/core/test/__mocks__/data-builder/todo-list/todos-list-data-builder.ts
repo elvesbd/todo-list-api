@@ -3,14 +3,14 @@ type CreateTodoListInput = {
   color: string;
 };
 
-export class TodoListDataBuilder {
+export class TodosListDataBuilder {
   private props: CreateTodoListInput = {
     color: '#456789',
     name: 'John Doe',
   };
 
-  public static anTodoList(): TodoListDataBuilder {
-    return new TodoListDataBuilder();
+  public static anTodoList(): TodosListDataBuilder {
+    return new TodosListDataBuilder();
   }
 
   public withName(name: string): this {

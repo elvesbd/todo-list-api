@@ -28,6 +28,7 @@ export class UpdateTodosListUseCase implements UseCase<Input, Output> {
     }
 
     todosList.update({ name, color });
+
     if (todosList.containNotifications) {
       return { todosList };
     }
