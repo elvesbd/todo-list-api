@@ -1,5 +1,4 @@
 node_modules
-.env
 *.log
 *.bak
 .cache
@@ -8,3 +7,8 @@ node_modules
 .idea
 package-lock.json
 yarn.lock
+dist
+tests
+*.md
+Dockerfile
+.dockerignore

@@ -20,10 +20,8 @@ export class AuthenticateUseCase {
 
   public async execute(input: Input): Promise<Output> {
     const { email, password } = input;
-    console.log({ email, password });
 
     const user = await this.userRepository.getByEmail(email);
-    console.log({ user });
 
     if (!user || user.password !== password)
       throw new UnauthorizedException('Invalid credentials!');
