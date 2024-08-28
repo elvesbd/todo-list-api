@@ -12,6 +12,11 @@ export class User extends Entity<UserProps> {
     this._password = props.password;
   }
 
+
+  static create(props: UserProps): User {
+    return new User(props);
+  }
+
   get id() {
     return this._id.value;
   }
