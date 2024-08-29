@@ -25,13 +25,6 @@ Para utilizar a API, é necessário autenticar-se. Quando a aplicação estiver 
 email: admin@mail.com
 password: @password123
 ```
-
-## URL de Acesso à API
-
-A API está disponível publicamente no seguinte URL:
-
-**URL de Produção:**
-
 ## Tecnologias Utilizadas
 
 O projeto foi construído em [Node.js](https://nodejs.org/en) com o framework [Nest.js](https://nestjs.com/), proporcionando uma base sólida para a aplicação. Além disso, a camada de testes é suportada pelo [Jest](https://jestjs.io/), uma das principais ferramentas de teste no ecossistema JavaScript.
